@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../public/css/styles.css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <title>Signup</title>
+    </head>
+<body>
+    <span id="collapse"><i class="fas fa-align-justify" id="icon-toggle"></i></span>
+    <section id="header">
+        <ul>
+            <a href="/"><li><i class="fas fa-home"></i>  Home</li></a>
+            <a href="/login"><li><i class="fas fa-user-shield"></i> Login</li></a>
+            <a href="/signup"><li><i class="fas fa-user-plus"></i> Register</li></a>
+            <a href="/about"><li><i class="fas fa-mug-hot"></i></i> About Us</li></a>
+        </ul>
+    </section>
+    <% if (success == 1) { %>
+        <span class="notify-sign-success">Successfully Registered Please go to Login</span>
+    <% } %>
+    <br>
+    <div class="container" id="login">
+            
+            <div id="col1" >
+                <img src="../public/images/create.png" alt="" id="sign" style="height: min(60vw,60vh);">
+            </div>
+            <div id="col2">
+                
+                <form action="/new_user" method="POST" enctype="multipart/form-data">
+                    <label for="email" >Email</label><br>
+                    <input type="text" name="email"><br>
+                    <label for="phone" >Mobile No.</label><br>
+                    <input type="text" name="phone"><br>
+                    <label for="username" >Username</label><br>
+                    <input type="text" name="username"><br>
+                    <label for="" >Password</label><br>
+                    <input type="text" style="margin-left: 2%;" name="password"><br>
+                    <label for="avatar" style="font-size: 0.8rem;">Profile Picture : ( filename as username.jpg )</label>
+                    <input type="file" name="avatar" style="display: inline;"/>
+                    <br />
+                    <button type="submit">SignUp</button>
+                </form>
+            </div>
+    </div>
+    <section id="footer">
+        Copyright @ 2021-2022 Students of T.I.E.T
+    </section>
+
+    <script src="../public/js/login.js"></script>
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../public/css/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>Dashboard</title>
+</head>
+<body>
+    <span id="collapse"><i class="fas fa-align-justify" id="icon-toggle"></i></span>
+    <section id="sidebar">
+        <div class="side-img">
+            <img src="/image/<%= user.pic_name %>" alt=""><br><br>
+            Hello <%=user.username%>
+        </div>
+        
+        <hr>
+        <div class="container">
+            <ul>
+                <li><i class="far fa-plus-square"></i> New Breath Record <span id="right"><i class="fas fa-chevron-right"></i></span></li>
+                <li><i class="fas fa-chart-line"></i> Dashboard<span id="right"><i class="fas fa-chevron-right"></i></span></li>
+                <a href="/profile"><li><i class="fas fa-user-cog"></i> Profile<span id="right"><i class="fas fa-chevron-right"></i></span></li></a>
+                <a href="/signup"><li><i class="fas fa-cash-register"></i> Register<span id="right"><i class="fas fa-chevron-right"></i></span></li></a>
+                <a href="/"><li><i class="fas fa-sign-out-alt"></i> Sign out<span id="right"><i class="fas fa-chevron-right"></i></span></li></a>
+            </ul>
+        </div>
+        <hr>
+        <ul>
+            <a href="https://drive.google.com/file/d/1DldBnnVkLfdY6b79ATtsBNINnGB7-bIF/view?usp=sharing"><li><i class="far fa-address-book"></i> Proposal<span id="right"><i class="fas fa-chevron-right"></i></span></li></a>
+            <a href="https://docs.google.com/document/d/1ZkcTZ6BVogRHR_7sw5lAD2-BNdeJJMfkChNr_xxkWbw/edit"><li><i class="far fa-file-word"></i> Documentation<span id="right"><i class="fas fa-chevron-right"></i></span></li></a>
+            <a href="https://docs.google.com/document/d/1jMgCIB8tpcF8UhYjfRULZP-SxReLpGhUYyXZy0K7b9c/edit"><li><i class="fas fa-book"></i> Resources<span id="right"><i class="fas fa-chevron-right"></i></span></li></a>
+        </ul>
+    </section>
+    <script src="../js/index.js"></script>
+</body>
+</html>

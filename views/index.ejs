@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../public/css/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script
+src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js">
+</script>
+    <title>Dashboard</title>
+    
+</head>
+<body>
+    <span id="collapse"><i class="fas fa-align-justify" id="icon-toggle"></i></span>
+    <section id="sidebar">
+        <div class="side-img">
+            <img src="/image/<%= user.pic_name %>" alt=""><br><br>
+            Hello <%=user.username%>
+        </div>
+        
+        <hr>
+        <div class="container">
+            <ul>
+                <li id="dis_new"><i class="far fa-plus-square"></i> New Breath Record <span id="right"><i class="fas fa-chevron-right"></i></span></li>
+                <li id="dis_dash"><i class="fas fa-chart-line"></i> Dashboard<span id="right"><i class="fas fa-chevron-right"></i></span></li>
+                <li id="dis_prof"><i class="fas fa-user-cog"></i> Profile<span id="right"><i class="fas fa-chevron-right"></i></span></li>
+                <a href="/signup"><li><i class="fas fa-cash-register"></i> Register<span id="right"><i class="fas fa-chevron-right"></i></span></li></a>
+                <a href="/"><li><i class="fas fa-sign-out-alt"></i> Sign out<span id="right"><i class="fas fa-chevron-right"></i></span></li></a>
+            </ul>
+        </div>
+        <hr>
+        <ul>
+            <a href="https://drive.google.com/file/d/1DldBnnVkLfdY6b79ATtsBNINnGB7-bIF/view?usp=sharing"><li><i class="far fa-address-book"></i> Proposal<span id="right"><i class="fas fa-chevron-right"></i></span></li></a>
+            <a href="https://docs.google.com/document/d/1ZkcTZ6BVogRHR_7sw5lAD2-BNdeJJMfkChNr_xxkWbw/edit"><li><i class="far fa-file-word"></i> Documentation<span id="right"><i class="fas fa-chevron-right"></i></span></li></a>
+            <a href="https://docs.google.com/document/d/1jMgCIB8tpcF8UhYjfRULZP-SxReLpGhUYyXZy0K7b9c/edit"><li><i class="fas fa-book"></i> Resources<span id="right"><i class="fas fa-chevron-right"></i></span></li></a>
+        </ul>
+    </section>
+
+    <section >
+        <div id="new">
+            <div id="title">
+                New Breath Record
+            </div>
+            <div id="information">
+                <form action="/user/new_upload" id="new_form" method="POST" enctype="multipart/form-data">
+                    <input type="text" name="id" id="" value="<%=user._id%>" style="display: none;">
+                    <label for="voc1">VOC_1</label>
+                    <input type="text" name="voc1" id=""><br>
+                    <label for="voc2">VOC_2</label>
+                    <input type="text" name="voc2" id=""><br>
+                    <label for="voc3">VOC_3</label>
+                    <input type="text" name="voc3" id=""><br>
+                    <label for="voc4">VOC_4</label>
+                    <input type="text" name="voc4" id=""><br>
+                    <label for="voc5">VOC_5</label>
+                    <input type="text" name="voc5" id=""><br>
+                    <label for="voc6">VOC_6</label>
+                    <input type="text" name="voc6" id=""><br>
+                    <label for="voc7">VOC_7</label>
+                    <input type="text" name="voc7" id=""><br>
+                    <label for="voc8">VOC_8</label>
+                    <input type="text" name="voc8" id=""><br>
+                    <label for="voc9">VOC_9</label>
+                    <input type="text" name="voc9" id=""><br>
+                    <button>Submit</button>
+                </form>
+            </div>
+        </div>
+
+        <div id="dash">
+            <div id="title">
+                Dashboard
+            </div>
+            <div id="information">
+                <canvas id="myChart" style="width: 100%;"></canvas>
+            </div>
+            <div>
+                <div id="title" style="margin : 2%;">
+                    Prediction Record
+                </div>
+                <table>
+                    <tr>
+                      <th>Serial Number</th>
+                      <th>Time</th>
+                      <th>Prediction</th>
+                    </tr>
+
+                    <% for(var i=0; i < misc.length; i++) { %>
+                        <tr>
+                          <td><%=i+1%>.</td>
+                          <td><%= misc[i]["time"] %></td>
+                          <td id="shouldbecoloured"><%= misc[i]["Prediction"] %></td>
+                        </tr>
+                     <% } %>
+                  </table>
+            </div>
+        </div>
+
+        <div id="profile">
+            <div id="title">
+                Profile Information
+            </div>
+            <div id="information">
+                <img src="/image/<%= user.pic_name %>" alt=""><br>
+                <div id="table-row">
+                    <div id="label">Username</div>
+                    <div id="data"><%=user.username%></div>
+                </div>
+                <div id="table-row">
+                    <div id="label">Password</div>
+                    <div id="data"><%=user.password%></div>
+                </div>
+                <div id="table-row">
+                    <div id="label">Email</div>
+                    <div id="data"><%=user.email%></div>
+                </div>
+                <div id="table-row">
+                    <div id="label">Phone Number</div>
+                    <div id="data"><%=user.phone%></div>
+                </div>
+                <div id="table-row">
+                    <div id="label">User Creation</div>
+                    <div id="data"><%=user.createdAt%></div>
+                </div>
+                <div id="table-row">
+                    <div id="label">User Updated</div>
+                    <div id="data"><%=user.updatedAt%></div>
+                </div>
+                
+            </div>
+        </div>
+       
+    </section>
+    <div id="my_reports" style="display: none;">
+        <%=JSON.stringify(reports)%>
+    </div>
+   
+    
+<script>
+var reports = document.getElementById("my_reports").innerHTML;
+reports = JSON.parse(reports);
+
+var xValues = ["Jan","Feb","March","April","May","June","July","August","Sep","Oct"];
+var myxvalues = [];
+var data1 = [];
+var data2 = [];
+var data3 = [];
+var data4 = [];
+var data5 = [];
+var data6 = [];
+var data7 = [];
+var data8 = [];
+var data9 = [];
+reports.map((item)=>{
+    myxvalues.push(item.time)
+    data1.push(item.voc1)
+    data2.push(item.voc2)
+    data3.push(item.voc3)
+    data4.push(item.voc4)
+    data5.push(item.voc5)
+    data6.push(item.voc6)
+    data7.push(item.voc7)
+    data8.push(item.voc8)
+    data9.push(item.voc9)
+})
+console.log(myxvalues);
+console.log(data2);
+let t = ["hi","hi","hi","hi","hi","hi","hi","hi","hi","hi"];
+new Chart("myChart", {
+  type: "line",
+  data: {
+    labels: t,
+    datasets: [{
+      label:"VOC_1",
+      data: data1,
+      borderColor: "#4dad49",
+      fill: false
+    },{
+        label:"VOC_2",
+      data: data2,
+      borderColor: "#974e9f",
+      fill: false
+    },{
+        label:"VOC_3",
+      data: data3,
+      borderColor: "#ff7f00",
+      fill: false
+    },{
+        label:"VOC_4",
+      data: data4,
+      borderColor: "#ffff33",
+      fill: false
+    },{
+        label:"VOC_5",
+      data: data5,
+      borderColor: "#a75629",
+      fill: false
+    },{
+        label:"VOC_6",
+      data: data6,
+      borderColor: "#f781be",
+      fill: false
+    },{
+        label:"VOC_7",
+      data: data7,
+      borderColor: "#999999",
+      fill: false
+    },{
+        label:"VOC_8",
+      data: data8,
+      borderColor: "#e3191b",
+      fill: false
+    },{
+        label:"VOC_9",
+      data: data9,
+      borderColor: "#397ab5",
+      fill: false
+    }]
+  },
+  options: {
+    
+  }
+});
+</script>
+    <script src="../js/index.js"></script>
+</body>
+</html>
