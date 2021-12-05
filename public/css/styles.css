@@ -354,6 +354,65 @@ table td{
         margin-top: 2%;
         font-size: 0.8rem;
 }
+.block{
+    display: inline-flex;
+    margin: 1% 10% 1% 10%;
+    background-color: #EDEDED;
+    padding: 2%;
+}
+.block1{
+    display: inline-flex;
+    margin: 1% 10% 1% 10%;
+    background-color: #010A43;
+    color: #fff;
+    padding: 2%;
+}
+.block3{
+    text-align: center;
+    display: inline-flex;
+    margin: 1% 10% 1% 10%;
+    background-color: #010A43;
+    color: #fff;
+    padding: 1%;
+    width: 78%;
+    letter-spacing: 2px;
+    font-weight: bold;
+}
+.heading{
+    margin: 1% 10% 1% 10%;
+    text-align: center;
+    padding: 1%;
+    background-color: #EDEDED;
+}
+.img-cont{
+    padding: 1%;
+    margin: 1% 2% 1% 2%;
+}
+.block3 img{
+    padding: 1%;
+    margin: 1%;
+}
+.block img{
+    height: 30vh;
+}
+.block1 img{
+    height: 30vh;
+}
+.block .left{
+    letter-spacing: 2px;
+    line-height: 2.1rem;
+    text-align: justify;
+    padding: 0 2% 0 2%;
+}
+.block1 .right{
+    letter-spacing: 2px;
+    line-height: 2.1rem;
+    text-align: justify;
+    padding: 0 2% 0 2%;
+}
+.block .right{
+    padding: 1%;
+}
 @media screen and (max-width: 1000px) {
     #sidebar{
         padding: 1%;
