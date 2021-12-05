@@ -77,7 +77,10 @@ src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js">
                 Dashboard
             </div>
             <div id="information">
-                <canvas id="myChart" style="width: 100%;"></canvas>
+                <span style="background-color: black;color: #fff;padding: 1%;">Report Vs Concentration of Each VOC</span>
+                <canvas id="myChart" style="margin-top: 1%;border: 2px solid black;margin-bottom: 2%;"></canvas>
+                <span style="background-color: black;color: #fff;padding: 1%">Healthy as 1 and Unhealthy as 0</span>
+                <canvas id="myChart1" style="margin-top:1%;border: 2px solid black;"></canvas>
             </div>
             <div>
                 <div id="title" style="margin : 2%;">
@@ -94,7 +97,7 @@ src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js">
                         <tr>
                           <td><%=i+1%>.</td>
                           <td><%= misc[i]["time"] %></td>
-                          <td id="shouldbecoloured"><%= misc[i]["Prediction"] %></td>
+                          <td id="shouldbecoloured"><%= misc[i]["Prediction"]?"Unhealthy":"healthy"%></td>
                         </tr>
                      <% } %>
                   </table>
@@ -143,6 +146,7 @@ src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js">
     
 <script>
 var reports = document.getElementById("my_reports").innerHTML;
+
 reports = JSON.parse(reports);
 
 var xValues = ["Jan","Feb","March","April","May","June","July","August","Sep","Oct"];
@@ -168,9 +172,18 @@ reports.map((item)=>{
     data8.push(item.voc8)
     data9.push(item.voc9)
 })
-console.log(myxvalues);
+console.log("dates",myxvalues);
 console.log(data2);
-let t = ["hi","hi","hi","hi","hi","hi","hi","hi","hi","hi"];
+let x = []
+for(let i=0;i<myxvalues.length;i++){
+    let s = String(myxvalues[i]);
+    s = s.split(" ");
+    let t = s[1]+"\r"+s[2] +"\r"+ s[3];
+
+    console.log(t)
+    x.push(t)
+}
+let t = x;
 new Chart("myChart", {
   type: "line",
   data: {
@@ -227,6 +240,36 @@ new Chart("myChart", {
   }
 });
 </script>
+<script>
+    var reports = document.getElementById("my_reports").innerHTML;
+
+    reports = JSON.parse(reports);
+    console.log("In line charts",reports);
+    let x1 = []
+    for(let i = 0;i<reports.length;i++){
+        if(reports[i]["Prediction"]==0){
+            x1.push(1)
+        }
+        else{
+            x1.push(-1)
+        }
+    }
+    
+    const ctx = document.getElementById('myChart1').getContext('2d');
+    const myChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: t,
+            datasets: [{
+                label: 'Healthy or unhealty vs report',
+                data: x1,
+                fill: false,
+                borderColor: 'rgb(75, 192, 192)',
+                tension: 0.1
+            }]
+        },
+    });
+    </script>
     <script src="../js/index.js"></script>
 </body>
 </html>
