@@ -29,7 +29,7 @@ src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js">
                 <li id="dis_new"><i class="far fa-plus-square"></i> New Breath Record <span id="right"><i class="fas fa-chevron-right"></i></span></li>
                 <li id="dis_dash"><i class="fas fa-chart-line"></i> Dashboard<span id="right"><i class="fas fa-chevron-right"></i></span></li>
                 <li id="dis_prof"><i class="fas fa-user-cog"></i> Profile<span id="right"><i class="fas fa-chevron-right"></i></span></li>
-                <a href="/signup"><li><i class="fas fa-cash-register"></i> Register<span id="right"><i class="fas fa-chevron-right"></i></span></li></a>
+                <li id="dis_table"><i class="fas fa-cash-register"></i> Reports Table<span id="right"><i class="fas fa-chevron-right"></i></span></li>
                 <a href="/"><li><i class="fas fa-sign-out-alt"></i> Sign out<span id="right"><i class="fas fa-chevron-right"></i></span></li></a>
             </ul>
         </div>
@@ -80,11 +80,41 @@ src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js">
                 <span style="background-color: black;color: #fff;padding: 1%;">Report Vs Concentration of Each VOC</span>
                 <canvas id="myChart" style="margin-top: 1%;border: 2px solid black;margin-bottom: 2%;"></canvas>
                 <span style="background-color: black;color: #fff;padding: 1%">Healthy as 1 and Unhealthy as 0</span>
-                <canvas id="myChart1" style="margin-top:1%;border: 2px solid black;"></canvas>
+                <canvas id="myChart1" style="margin-top:1%;border: 2px solid black;margin-bottom: 2%;"></canvas>
+                <span style="background-color: black;color: #fff;padding: 1%;margin-top:1%;">Each voc variation with prediction</span>
+                <br>
+                <div class="inline-btns">
+                    <button id="show1">VOC 1</button>
+                    <button id="show2">VOC 2</button>
+                    <button id="show3">VOC 3</button>
+                    <button id="show4">VOC 4</button>
+                    <button id="show5">VOC 5</button>
+                    <button id="show6">VOC 6</button>
+                    <button id="show7">VOC 7</button>
+                    <button id="show8">VOC 8</button>
+                    <button id="show9">VOC 9</button>
+                </div>
+                <div class="mydiv">
+                    <canvas id="myChart00" style="margin-top:1%;border: 2px solid black;"></canvas>
+                    <canvas id="myChart11" style="margin-top:1%;border: 2px solid black;"></canvas>
+                    <canvas id="myChart22" style="margin-top:1%;border: 2px solid black;"></canvas>
+                    <canvas id="myChart33" style="margin-top:1%;border: 2px solid black;"></canvas>
+                    <canvas id="myChart44" style="margin-top:1%;border: 2px solid black;"></canvas>
+                    <canvas id="myChart55" style="margin-top:1%;border: 2px solid black;"></canvas>
+                    <canvas id="myChart66" style="margin-top:1%;border: 2px solid black;"></canvas>
+                    <canvas id="myChart77" style="margin-top:1%;border: 2px solid black;"></canvas>
+                    <canvas id="myChart88" style="margin-top:1%;border: 2px solid black;"></canvas>
+                </div>
+                
+
             </div>
+            
+        </div>
+
+        <div id="dis-table">
             <div>
-                <div id="title" style="margin : 2%;">
-                    Prediction Record
+                <div id="title" style="margin-bottom: 2%;">
+                    Prediction Reports Table
                 </div>
                 <table>
                     <tr>
@@ -270,6 +300,234 @@ new Chart("myChart", {
         },
     });
     </script>
+    <script>
+         console.log("in bar",reports);
+         // preparing data
+         let datav1 = []
+         let datav2 = []
+         let datav3 = []
+         let datav4 = []
+         let datav5 = []
+         let datav6 = []
+         let datav7 = []
+         let datav8 = []
+         let datav9 = []
+         let color1 = []
+         let backcolor1 = []
+         for(let i=0;i<reports.length;i++){
+             datav1.push(reports[i]["voc1"]);
+             datav2.push(reports[i]["voc2"]);
+             datav3.push(reports[i]["voc3"]);
+             datav4.push(reports[i]["voc4"]);
+             datav5.push(reports[i]["voc5"]);
+             datav6.push(reports[i]["voc6"]);
+             datav7.push(reports[i]["voc7"]);
+             datav8.push(reports[i]["voc8"]);
+             datav9.push(reports[i]["voc9"]);
+             
+             if(reports[i]["Prediction"]==0){
+                backcolor1.push("greenyellow");
+                color1.push("darkgreen");
+             }
+             else{
+                backcolor1.push("orange");
+                color1.push("red");
+             }
+         } 
+
+         // preparing data
+        const ctx1 = document.getElementById('myChart00').getContext('2d');
+        const ctx2 = document.getElementById('myChart11').getContext('2d');
+        const ctx3 = document.getElementById('myChart22').getContext('2d');
+        const ctx4 = document.getElementById('myChart33').getContext('2d');
+        const ctx5 = document.getElementById('myChart44').getContext('2d');
+        const ctx6 = document.getElementById('myChart55').getContext('2d');
+        const ctx7 = document.getElementById('myChart66').getContext('2d');
+        const ctx8 = document.getElementById('myChart77').getContext('2d');
+        const ctx9 = document.getElementById('myChart88').getContext('2d');
+            const data0 = {
+            labels: t,
+            datasets: [{
+                label: 'VOC 1',
+                data: datav1,
+                backgroundColor: backcolor1,
+                borderColor: color1,
+                borderWidth: 1
+            }]
+            };
+            const data11 = {
+            labels: t,
+            datasets: [{
+                label: 'VOC 2',
+                data: datav2,
+                backgroundColor: backcolor1,
+                borderColor: color1,
+                borderWidth: 1
+            }]
+            };const data22 = {
+            labels: t,
+            datasets: [{
+                label: 'VOC 3',
+                data: datav3,
+                backgroundColor: backcolor1,
+                borderColor: color1,
+                borderWidth: 1
+            }]
+            };const data33 = {
+            labels: t,
+            datasets: [{
+                label: 'VOC 4',
+                data: datav4,
+                backgroundColor: backcolor1,
+                borderColor: color1,
+                borderWidth: 1
+            }]
+            };const data44 = {
+            labels: t,
+            datasets: [{
+                label: 'VOC 5',
+                data: datav5,
+                backgroundColor: backcolor1,
+                borderColor: color1,
+                borderWidth: 1
+            }]
+            };const data55 = {
+            labels: t,
+            datasets: [{
+                label: 'VOC 6',
+                data: datav6,
+                backgroundColor: backcolor1,
+                borderColor: color1,
+                borderWidth: 1
+            }]
+            };const data66 = {
+            labels: t,
+            datasets: [{
+                label: 'VOC 7',
+                data: datav7,
+                backgroundColor: backcolor1,
+                borderColor: color1,
+                borderWidth: 1
+            }]
+            };const data77 = {
+            labels: t,
+            datasets: [{
+                label: 'VOC 8',
+                data: datav8,
+                backgroundColor: backcolor1,
+                borderColor: color1,
+                borderWidth: 1
+            }]
+            };const data88 = {
+            labels: t,
+            datasets: [{
+                label: 'VOC 9',
+                data: datav9,
+                backgroundColor: backcolor1,
+                borderColor: color1,
+                borderWidth: 1
+            }]
+            };
+                    const myChart1 = new Chart(ctx1, {
+                    type: 'bar',
+                    data: data0,
+                    options: {
+                        scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                        }
+                    },
+                    });
+                    const myChart2 = new Chart(ctx2, {
+                    type: 'bar',
+                    data: data11,
+                    options: {
+                        scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                        }
+                    },
+                    });
+                    const myChart3 = new Chart(ctx3, {
+                    type: 'bar',
+                    data: data22,
+                    options: {
+                        scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                        }
+                    },
+                    });
+                    const myChart4 = new Chart(ctx4, {
+                    type: 'bar',
+                    data: data33,
+                    options: {
+                        scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                        }
+                    },
+                    });
+                    const myChart5 = new Chart(ctx5, {
+                    type: 'bar',
+                    data: data44,
+                    options: {
+                        scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                        }
+                    },
+                    });
+                    const myChart6 = new Chart(ctx6, {
+                    type: 'bar',
+                    data: data55,
+                    options: {
+                        scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                        }
+                    },
+                    });
+                    const myChart7 = new Chart(ctx7, {
+                    type: 'bar',
+                    data: data66,
+                    options: {
+                        scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                        }
+                    },
+                    });
+                    const myChart8 = new Chart(ctx8, {
+                    type: 'bar',
+                    data: data77,
+                    options: {
+                        scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                        }
+                    },
+                    });
+                    const myChart9 = new Chart(ctx9, {
+                    type: 'bar',
+                    data: data88,
+                    options: {
+                        scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                        }
+                    },
+                    });
+        </script>
     <script src="../js/index.js"></script>
 </body>
 </html>
