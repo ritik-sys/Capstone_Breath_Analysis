@@ -12,6 +12,8 @@
     <script
 src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js">
 </script>
+<script src='https://cdn.plot.ly/plotly-2.6.3.min.js'></script>
+	<script src='https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.17/d3.min.js'></script>
     <title>Dashboard</title>
     
 </head>
@@ -77,6 +79,29 @@ src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js">
                 Dashboard
             </div>
             <div id="information">
+                <div class="upper-card">
+                    <div class="card">
+                        <div class="titl">
+                            Reports Uploaded 
+                        </div>
+                        <br><span id="number"></span>
+                    </div>
+
+                    <div class="card">
+                        <div class="titl">
+                            Last Report Date 
+                        </div>
+                        <br><span id="last-date"></span>
+                    </div>
+
+                    <div class="card">
+                        <div class="titl">
+                            Medical Assistance Reqd 
+                        </div>
+                        <br><span id="reqd"></span>
+                    </div>
+
+                </div>
                 <span style="background-color: black;color: #fff;padding: 1%;">Report Vs Concentration of Each VOC</span>
                 <canvas id="myChart" style="margin-top: 1%;border: 2px solid black;margin-bottom: 2%;"></canvas>
                 <span style="background-color: black;color: #fff;padding: 1%">Healthy as 1 and Unhealthy as 0</span>
@@ -105,7 +130,10 @@ src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js">
                     <canvas id="myChart77" style="margin-top:1%;border: 2px solid black;"></canvas>
                     <canvas id="myChart88" style="margin-top:1%;border: 2px solid black;"></canvas>
                 </div>
-                
+                <br>
+                <span style="background-color: black;color: #fff;padding: 1%;margin-top:5%;">VOC range with reports</span>
+                <div id='myDiv' style="padding: 2%;border: 2px solid black;">
+                </div>
 
             </div>
             
@@ -178,7 +206,14 @@ src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js">
 var reports = document.getElementById("my_reports").innerHTML;
 
 reports = JSON.parse(reports);
-
+var size = reports.length;
+document.getElementById("number").innerHTML = size;
+document.getElementById("reqd").innerHTML = "No";
+if(reports.length>0){
+    if(reports[reports.length-1]["Prediction"]){
+        document.getElementById("reqd").innerHTML = "Yes";
+    }
+}
 var xValues = ["Jan","Feb","March","April","May","June","July","August","Sep","Oct"];
 var myxvalues = [];
 var data1 = [];
@@ -213,6 +248,7 @@ for(let i=0;i<myxvalues.length;i++){
     console.log(t)
     x.push(t)
 }
+document.getElementById("last-date").innerHTML = x[x.length-1];
 let t = x;
 new Chart("myChart", {
   type: "line",
@@ -528,6 +564,113 @@ new Chart("myChart", {
                     },
                     });
         </script>
+        
+        <script>
+            var y0 = [];
+            var y1 = [];
+    
+            var y2 = [];
+            var y3 = [];
+    
+            var y4 = [];
+            var y5 = [];
+    
+            var y6 = [];
+            var y7 = [];
+            var y8 = [];
+    
+            for (var i = 0; i < 50; i ++) {
+                y0[i] = Math.random();
+                y1[i] = Math.random() + 1;
+    
+                y2[i] = Math.random();
+                y3[i] = Math.random() + 1;
+    
+                y4[i] = Math.random();
+                y5[i] = Math.random() + 1;
+    
+                y6[i] = Math.random();
+                y7[i] = Math.random() + 1;
+    
+                y8[i] = Math.random() + 1;
+    
+            }
+    
+            var VOC_1 = {
+            y: datav1,
+            type: 'box',
+            name : "VOC_1"
+            };
+    
+            var VOC_2 = {
+            y: datav2,
+            type: 'box',
+            name : "VOC_2"
+            };
+    
+            var VOC_3 = {
+            y: datav3,
+            type: 'box',
+            name : "VOC_3"
+            };
+    
+            var VOC_4 = {
+            y: datav4,
+            type: 'box',
+            name : "VOC_4"
+            };
+    
+            var VOC_5 = {
+            y: datav5,
+            type: 'box',
+            name : "VOC_5"
+            };
+    
+            var VOC_6 = {
+            y: datav6,
+            type: 'box',
+            name : "VOC_6"
+            };
+    
+            var VOC_7 = {
+            y: datav7,
+            type: 'box',
+            name : "VOC_7"
+            };
+    
+            var VOC_8 = {
+            y: datav8,
+            type: 'box',
+            name : "VOC_8"
+            };
+    
+            var VOC_9 = {
+            y: datav9,
+            type: 'box',
+            name : "VOC_9"
+            };
+    
+            var data = [VOC_1, VOC_2,VOC_3,VOC_4,VOC_5,VOC_6,VOC_7,VOC_8,VOC_9];
+
+            var layout = {
+                font: {
+                    family: "'Montserrat', sans-serif",
+                    size: "1rem",
+                },
+                
+                legend: {
+                       
+                        font: {
+                        family: "'Montserrat', sans-serif",
+                        size: "0.3rem",
+                        },
+                       
+                    }
+                };
+    
+            Plotly.newPlot('myDiv', data,layout);
+        </script>
+        
     <script src="../js/index.js"></script>
 </body>
 </html>

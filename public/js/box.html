@@ -1,0 +1,98 @@
+<head>
+	<!-- Load plotly.js into the DOM -->
+	<script src='https://cdn.plot.ly/plotly-2.6.3.min.js'></script>
+	<script src='https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.17/d3.min.js'></script>
+</head>
+
+<body>
+	<div id='myDiv' style="width: 50%;"><!-- Plotly chart will be drawn inside this DIV --></div>
+    <script>
+        var y0 = [];
+        var y1 = [];
+
+        var y2 = [];
+        var y3 = [];
+
+        var y4 = [];
+        var y5 = [];
+
+        var y6 = [];
+        var y7 = [];
+        var y8 = [];
+
+        for (var i = 0; i < 50; i ++) {
+            y0[i] = Math.random();
+            y1[i] = Math.random() + 1;
+
+            y2[i] = Math.random();
+            y3[i] = Math.random() + 1;
+
+            y4[i] = Math.random();
+            y5[i] = Math.random() + 1;
+
+            y6[i] = Math.random();
+            y7[i] = Math.random() + 1;
+
+            y8[i] = Math.random() + 1;
+
+        }
+
+        var VOC_1 = {
+        y: y0,
+        type: 'box',
+        name : "VOC_1"
+        };
+
+        var VOC_2 = {
+        y: y1,
+        type: 'box',
+        name : "VOC_2"
+        };
+
+        var VOC_3 = {
+        y: y2,
+        type: 'box',
+        name : "VOC_3"
+        };
+
+        var VOC_4 = {
+        y: y3,
+        type: 'box',
+        name : "VOC_4"
+        };
+
+        var VOC_5 = {
+        y: y4,
+        type: 'box',
+        name : "VOC_5"
+        };
+
+        var VOC_6 = {
+        y: y5,
+        type: 'box',
+        name : "VOC_6"
+        };
+
+        var VOC_7 = {
+        y: y6,
+        type: 'box',
+        name : "VOC_7"
+        };
+
+        var VOC_8 = {
+        y: y7,
+        type: 'box',
+        name : "VOC_8"
+        };
+
+        var VOC_9 = {
+        y: y8,
+        type: 'box',
+        name : "VOC_9"
+        };
+
+        var data = [VOC_1, VOC_2,VOC_3,VOC_4,VOC_5,VOC_6,VOC_7,VOC_8,VOC_9];
+
+        Plotly.newPlot('myDiv', data);
+    </script>
+</body>

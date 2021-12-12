@@ -2,7 +2,24 @@ body{
     margin: 0;
     font-family: 'Montserrat', sans-serif;
 }
-
+.upper-card{
+    padding: 1%;
+    margin: 0 1% 2% 1%;
+    text-align: center;
+}
+.card{
+    border: 4px solid black;
+    width: 28%;
+    padding: 1%;
+    margin: 1%;
+    display: inline-table;
+    text-align: center;
+}
+.titl{
+    padding: 3%;
+    background-color: #2A0944;
+    color: #fff;
+}
 #sidebar{
     
     padding: 1%;
