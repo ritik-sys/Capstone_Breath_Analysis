@@ -9,6 +9,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
     <script
 src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js">
 </script>
@@ -82,7 +83,7 @@ src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js">
                 <div class="upper-card">
                     <div class="card">
                         <div class="titl">
-                            Reports Uploaded 
+                            <i class="fas fa-file-chart-line"></i>Reports Uploaded 
                         </div>
                         <br><span id="number"></span>
                     </div>
@@ -154,8 +155,15 @@ src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js">
                     <% for(var i=0; i < misc.length; i++) { %>
                         <tr>
                           <td><%=i+1%>.</td>
-                          <td><%= misc[i]["time"] %></td>
-                          <td id="shouldbecoloured"><%= misc[i]["Prediction"]?"Unhealthy":"healthy"%></td>
+                          <td><%= misc[i]["time"].slice(0,15) %></td>
+                          <% if( misc[i]["Prediction"] == 1){ %>
+                            <td id="shouldbecoloured" style="background-color: rgb(209, 79, 79);">Unhealthy</td>
+                            <% } else { %>
+                                <td id="shouldbecoloured" style="background-color: rgb(79, 171, 49);">healthy</td>
+                            <% } %>
+
+
+                         
                         </tr>
                      <% } %>
                   </table>
@@ -172,10 +180,7 @@ src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js">
                     <div id="label">Username</div>
                     <div id="data"><%=user.username%></div>
                 </div>
-                <div id="table-row">
-                    <div id="label">Password</div>
-                    <div id="data"><%=user.password%></div>
-                </div>
+               
                 <div id="table-row">
                     <div id="label">Email</div>
                     <div id="data"><%=user.email%></div>
