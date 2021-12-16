@@ -53,26 +53,31 @@ src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js">
                 <form action="/user/new_upload" id="new_form" method="POST" enctype="multipart/form-data">
                     <div class="title-new">
                         Reading of Components from Instrument
+                        <br>
+                        <p class="random-btn" onclick="handleRandom()">GENERATE RANDOM DATA</p>
                     </div>
+                   
+
                     <input type="text" name="id" id="" value="<%=user._id%>" style="display: none;">
+                    
                     <label for="voc1">Component 1</label>
-                    <input type="text" name="voc1" id=""><br>
+                    <input type="text" name="voc1" class="form-field"><br>
                     <label for="voc2">Component 2</label>
-                    <input type="text" name="voc2" id=""><br>
+                    <input type="text" name="voc2" class="form-field"><br>
                     <label for="voc3">Component 3</label>
-                    <input type="text" name="voc3" id=""><br>
+                    <input type="text" name="voc3" class="form-field"><br>
                     <label for="voc4">Component 4</label>
-                    <input type="text" name="voc4" id=""><br>
+                    <input type="text" name="voc4" class="form-field"><br>
                     <label for="voc5">Component 5</label>
-                    <input type="text" name="voc5" id=""><br>
+                    <input type="text" name="voc5" class="form-field"><br>
                     <label for="voc6">Component 6</label>
-                    <input type="text" name="voc6" id=""><br>
+                    <input type="text" name="voc6" class="form-field"><br>
                     <label for="voc7">Component 7</label>
-                    <input type="text" name="voc7" id=""><br>
+                    <input type="text" name="voc7" class="form-field"><br>
                     <label for="voc8">Component 8</label>
-                    <input type="text" name="voc8" id=""><br>
+                    <input type="text" name="voc8" class="form-field"><br>
                     <label for="voc9">Component 9</label>
-                    <input type="text" name="voc9" id=""><br>
+                    <input type="text" name="voc9" class="form-field"><br>
                     <button>Submit</button>
                 </form>
             </div>
@@ -829,6 +834,17 @@ src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js">
                         };
             
                     Plotly.newPlot('myDiv', data,layout);
+
+
+                    //random data genertor
+
+                    function handleRandom(){
+                        var collection = document.getElementsByClassName("form-field");
+                        for (let i = 0; i < collection.length; i++) {
+                             console.log(collection[i]);
+                             collection[i].value = (Math.random())/100 ;
+                        }
+                    }
                 </script>
                 
             <script src="../js/index.js"></script>
