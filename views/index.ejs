@@ -51,24 +51,27 @@ src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js">
             </div>
             <div id="information">
                 <form action="/user/new_upload" id="new_form" method="POST" enctype="multipart/form-data">
+                    <div class="title-new">
+                        Reading of Components from Instrument
+                    </div>
                     <input type="text" name="id" id="" value="<%=user._id%>" style="display: none;">
-                    <label for="voc1">VOC_1</label>
+                    <label for="voc1">Component 1</label>
                     <input type="text" name="voc1" id=""><br>
-                    <label for="voc2">VOC_2</label>
+                    <label for="voc2">Component 2</label>
                     <input type="text" name="voc2" id=""><br>
-                    <label for="voc3">VOC_3</label>
+                    <label for="voc3">Component 3</label>
                     <input type="text" name="voc3" id=""><br>
-                    <label for="voc4">VOC_4</label>
+                    <label for="voc4">Component 4</label>
                     <input type="text" name="voc4" id=""><br>
-                    <label for="voc5">VOC_5</label>
+                    <label for="voc5">Component 5</label>
                     <input type="text" name="voc5" id=""><br>
-                    <label for="voc6">VOC_6</label>
+                    <label for="voc6">Component 6</label>
                     <input type="text" name="voc6" id=""><br>
-                    <label for="voc7">VOC_7</label>
+                    <label for="voc7">Component 7</label>
                     <input type="text" name="voc7" id=""><br>
-                    <label for="voc8">VOC_8</label>
+                    <label for="voc8">Component 8</label>
                     <input type="text" name="voc8" id=""><br>
-                    <label for="voc9">VOC_9</label>
+                    <label for="voc9">Component 9</label>
                     <input type="text" name="voc9" id=""><br>
                     <button>Submit</button>
                 </form>
@@ -207,475 +210,627 @@ src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js">
     </div>
    
     
-<script>
-var reports = document.getElementById("my_reports").innerHTML;
-
-reports = JSON.parse(reports);
-var size = reports.length;
-document.getElementById("number").innerHTML = size;
-document.getElementById("reqd").innerHTML = "No";
-if(reports.length>0){
-    if(reports[reports.length-1]["Prediction"]){
-        document.getElementById("reqd").innerHTML = "Yes";
-    }
-}
-var xValues = ["Jan","Feb","March","April","May","June","July","August","Sep","Oct"];
-var myxvalues = [];
-var data1 = [];
-var data2 = [];
-var data3 = [];
-var data4 = [];
-var data5 = [];
-var data6 = [];
-var data7 = [];
-var data8 = [];
-var data9 = [];
-reports.map((item)=>{
-    myxvalues.push(item.time)
-    data1.push(item.voc1)
-    data2.push(item.voc2)
-    data3.push(item.voc3)
-    data4.push(item.voc4)
-    data5.push(item.voc5)
-    data6.push(item.voc6)
-    data7.push(item.voc7)
-    data8.push(item.voc8)
-    data9.push(item.voc9)
-})
-console.log("dates",myxvalues);
-console.log(data2);
-let x = []
-for(let i=0;i<myxvalues.length;i++){
-    let s = String(myxvalues[i]);
-    s = s.split(" ");
-    let t = s[1]+"\r"+s[2] +"\r"+ s[3];
-
-    console.log(t)
-    x.push(t)
-}
-document.getElementById("last-date").innerHTML = x[x.length-1];
-let t = x;
-new Chart("myChart", {
-  type: "line",
-  data: {
-    labels: t,
-    datasets: [{
-      label:"VOC_1",
-      data: data1,
-      borderColor: "#4dad49",
-      fill: false
-    },{
-        label:"VOC_2",
-      data: data2,
-      borderColor: "#974e9f",
-      fill: false
-    },{
-        label:"VOC_3",
-      data: data3,
-      borderColor: "#ff7f00",
-      fill: false
-    },{
-        label:"VOC_4",
-      data: data4,
-      borderColor: "#ffff33",
-      fill: false
-    },{
-        label:"VOC_5",
-      data: data5,
-      borderColor: "#a75629",
-      fill: false
-    },{
-        label:"VOC_6",
-      data: data6,
-      borderColor: "#f781be",
-      fill: false
-    },{
-        label:"VOC_7",
-      data: data7,
-      borderColor: "#999999",
-      fill: false
-    },{
-        label:"VOC_8",
-      data: data8,
-      borderColor: "#e3191b",
-      fill: false
-    },{
-        label:"VOC_9",
-      data: data9,
-      borderColor: "#397ab5",
-      fill: false
-    }]
-  },
-  options: {
-    
-  }
-});
-</script>
-<script>
-    var reports = document.getElementById("my_reports").innerHTML;
-
-    reports = JSON.parse(reports);
-    console.log("In line charts",reports);
-    let x1 = []
-    for(let i = 0;i<reports.length;i++){
-        if(reports[i]["Prediction"]==0){
-            x1.push(1)
-        }
-        else{
-            x1.push(-1)
-        }
-    }
-    
-    const ctx = document.getElementById('myChart1').getContext('2d');
-    const myChart = new Chart(ctx, {
-        type: 'line',
-        data: {
-            labels: t,
-            datasets: [{
-                label: 'Healthy or unhealty vs report',
-                data: x1,
-                fill: false,
-                borderColor: 'rgb(75, 192, 192)',
-                tension: 0.1
-            }]
-        },
-    });
-    </script>
     <script>
-         console.log("in bar",reports);
-         // preparing data
-         let datav1 = []
-         let datav2 = []
-         let datav3 = []
-         let datav4 = []
-         let datav5 = []
-         let datav6 = []
-         let datav7 = []
-         let datav8 = []
-         let datav9 = []
-         let color1 = []
-         let backcolor1 = []
-         for(let i=0;i<reports.length;i++){
-             datav1.push(reports[i]["voc1"]);
-             datav2.push(reports[i]["voc2"]);
-             datav3.push(reports[i]["voc3"]);
-             datav4.push(reports[i]["voc4"]);
-             datav5.push(reports[i]["voc5"]);
-             datav6.push(reports[i]["voc6"]);
-             datav7.push(reports[i]["voc7"]);
-             datav8.push(reports[i]["voc8"]);
-             datav9.push(reports[i]["voc9"]);
-             
-             if(reports[i]["Prediction"]==0){
-                backcolor1.push("greenyellow");
-                color1.push("darkgreen");
-             }
-             else{
-                backcolor1.push("orange");
-                color1.push("red");
-             }
-         } 
-
-         // preparing data
-        const ctx1 = document.getElementById('myChart00').getContext('2d');
-        const ctx2 = document.getElementById('myChart11').getContext('2d');
-        const ctx3 = document.getElementById('myChart22').getContext('2d');
-        const ctx4 = document.getElementById('myChart33').getContext('2d');
-        const ctx5 = document.getElementById('myChart44').getContext('2d');
-        const ctx6 = document.getElementById('myChart55').getContext('2d');
-        const ctx7 = document.getElementById('myChart66').getContext('2d');
-        const ctx8 = document.getElementById('myChart77').getContext('2d');
-        const ctx9 = document.getElementById('myChart88').getContext('2d');
-            const data0 = {
-            labels: t,
-            datasets: [{
-                label: 'VOC 1',
-                data: datav1,
-                backgroundColor: backcolor1,
-                borderColor: color1,
-                borderWidth: 1
-            }]
-            };
-            const data11 = {
-            labels: t,
-            datasets: [{
-                label: 'VOC 2',
-                data: datav2,
-                backgroundColor: backcolor1,
-                borderColor: color1,
-                borderWidth: 1
-            }]
-            };const data22 = {
-            labels: t,
-            datasets: [{
-                label: 'VOC 3',
-                data: datav3,
-                backgroundColor: backcolor1,
-                borderColor: color1,
-                borderWidth: 1
-            }]
-            };const data33 = {
-            labels: t,
-            datasets: [{
-                label: 'VOC 4',
-                data: datav4,
-                backgroundColor: backcolor1,
-                borderColor: color1,
-                borderWidth: 1
-            }]
-            };const data44 = {
-            labels: t,
-            datasets: [{
-                label: 'VOC 5',
-                data: datav5,
-                backgroundColor: backcolor1,
-                borderColor: color1,
-                borderWidth: 1
-            }]
-            };const data55 = {
-            labels: t,
-            datasets: [{
-                label: 'VOC 6',
-                data: datav6,
-                backgroundColor: backcolor1,
-                borderColor: color1,
-                borderWidth: 1
-            }]
-            };const data66 = {
-            labels: t,
-            datasets: [{
-                label: 'VOC 7',
-                data: datav7,
-                backgroundColor: backcolor1,
-                borderColor: color1,
-                borderWidth: 1
-            }]
-            };const data77 = {
-            labels: t,
-            datasets: [{
-                label: 'VOC 8',
-                data: datav8,
-                backgroundColor: backcolor1,
-                borderColor: color1,
-                borderWidth: 1
-            }]
-            };const data88 = {
-            labels: t,
-            datasets: [{
-                label: 'VOC 9',
-                data: datav9,
-                backgroundColor: backcolor1,
-                borderColor: color1,
-                borderWidth: 1
-            }]
-            };
-                    const myChart1 = new Chart(ctx1, {
-                    type: 'bar',
-                    data: data0,
-                    options: {
-                        scales: {
-                        y: {
-                            beginAtZero: true
-                        }
-                        }
-                    },
-                    });
-                    const myChart2 = new Chart(ctx2, {
-                    type: 'bar',
-                    data: data11,
-                    options: {
-                        scales: {
-                        y: {
-                            beginAtZero: true
-                        }
-                        }
-                    },
-                    });
-                    const myChart3 = new Chart(ctx3, {
-                    type: 'bar',
-                    data: data22,
-                    options: {
-                        scales: {
-                        y: {
-                            beginAtZero: true
-                        }
-                        }
-                    },
-                    });
-                    const myChart4 = new Chart(ctx4, {
-                    type: 'bar',
-                    data: data33,
-                    options: {
-                        scales: {
-                        y: {
-                            beginAtZero: true
-                        }
-                        }
-                    },
-                    });
-                    const myChart5 = new Chart(ctx5, {
-                    type: 'bar',
-                    data: data44,
-                    options: {
-                        scales: {
-                        y: {
-                            beginAtZero: true
-                        }
-                        }
-                    },
-                    });
-                    const myChart6 = new Chart(ctx6, {
-                    type: 'bar',
-                    data: data55,
-                    options: {
-                        scales: {
-                        y: {
-                            beginAtZero: true
-                        }
-                        }
-                    },
-                    });
-                    const myChart7 = new Chart(ctx7, {
-                    type: 'bar',
-                    data: data66,
-                    options: {
-                        scales: {
-                        y: {
-                            beginAtZero: true
-                        }
-                        }
-                    },
-                    });
-                    const myChart8 = new Chart(ctx8, {
-                    type: 'bar',
-                    data: data77,
-                    options: {
-                        scales: {
-                        y: {
-                            beginAtZero: true
-                        }
-                        }
-                    },
-                    });
-                    const myChart9 = new Chart(ctx9, {
-                    type: 'bar',
-                    data: data88,
-                    options: {
-                        scales: {
-                        y: {
-                            beginAtZero: true
-                        }
-                        }
-                    },
-                    });
-        </script>
+        var reports = document.getElementById("my_reports").innerHTML;
         
-        <script>
-            var y0 = [];
-            var y1 = [];
-    
-            var y2 = [];
-            var y3 = [];
-    
-            var y4 = [];
-            var y5 = [];
-    
-            var y6 = [];
-            var y7 = [];
-            var y8 = [];
-    
-            for (var i = 0; i < 50; i ++) {
-                y0[i] = Math.random();
-                y1[i] = Math.random() + 1;
-    
-                y2[i] = Math.random();
-                y3[i] = Math.random() + 1;
-    
-                y4[i] = Math.random();
-                y5[i] = Math.random() + 1;
-    
-                y6[i] = Math.random();
-                y7[i] = Math.random() + 1;
-    
-                y8[i] = Math.random() + 1;
-    
+        reports = JSON.parse(reports);
+        var size = reports.length;
+        document.getElementById("number").innerHTML = size;
+        document.getElementById("reqd").innerHTML = "No";
+        if(reports.length>0){
+            if(reports[reports.length-1]["Prediction"]){
+                document.getElementById("reqd").innerHTML = "Yes";
             }
-    
-            var VOC_1 = {
-            y: datav1,
-            type: 'box',
-            name : "VOC_1"
-            };
-    
-            var VOC_2 = {
-            y: datav2,
-            type: 'box',
-            name : "VOC_2"
-            };
-    
-            var VOC_3 = {
-            y: datav3,
-            type: 'box',
-            name : "VOC_3"
-            };
-    
-            var VOC_4 = {
-            y: datav4,
-            type: 'box',
-            name : "VOC_4"
-            };
-    
-            var VOC_5 = {
-            y: datav5,
-            type: 'box',
-            name : "VOC_5"
-            };
-    
-            var VOC_6 = {
-            y: datav6,
-            type: 'box',
-            name : "VOC_6"
-            };
-    
-            var VOC_7 = {
-            y: datav7,
-            type: 'box',
-            name : "VOC_7"
-            };
-    
-            var VOC_8 = {
-            y: datav8,
-            type: 'box',
-            name : "VOC_8"
-            };
-    
-            var VOC_9 = {
-            y: datav9,
-            type: 'box',
-            name : "VOC_9"
-            };
-    
-            var data = [VOC_1, VOC_2,VOC_3,VOC_4,VOC_5,VOC_6,VOC_7,VOC_8,VOC_9];
-
-            var layout = {
-                font: {
-                    family: "'Montserrat', sans-serif",
-                    size: "1rem",
-                },
-                
-                legend: {
-                       
-                        font: {
-                        family: "'Montserrat', sans-serif",
-                        size: "0.3rem",
-                        },
-                       
-                    }
-                };
-    
-            Plotly.newPlot('myDiv', data,layout);
-        </script>
+        }
+        var xValues = ["Jan","Feb","March","April","May","June","July","August","Sep","Oct"];
+        var myxvalues = [];
+        var data1 = [];
+        var data2 = [];
+        var data3 = [];
+        var data4 = [];
+        var data5 = [];
+        var data6 = [];
+        var data7 = [];
+        var data8 = [];
+        var data9 = [];
+        reports.map((item)=>{
+            myxvalues.push(item.time)
+            data1.push(item.voc1)
+            data2.push(item.voc2)
+            data3.push(item.voc3)
+            data4.push(item.voc4)
+            data5.push(item.voc5)
+            data6.push(item.voc6)
+            data7.push(item.voc7)
+            data8.push(item.voc8)
+            data9.push(item.voc9)
+        })
+        console.log("dates",myxvalues);
+        console.log(data2);
+        let x = []
+        for(let i=0;i<myxvalues.length;i++){
+            let s = String(myxvalues[i]);
+            s = s.split(" ");
+            let t = s[1]+"\r"+s[2] +"\r"+ s[3];
         
-    <script src="../js/index.js"></script>
+            console.log(t)
+            x.push(t)
+        }
+        document.getElementById("last-date").innerHTML = x[x.length-1];
+        let t = x;
+        new Chart("myChart", {
+          type: "line",
+          data: {
+            labels: t,
+            datasets: [{
+              label:"VOC_1",
+              data: data1,
+              borderColor: "#4dad49",
+              fill: false
+            },{
+                label:"VOC_2",
+              data: data2,
+              borderColor: "#974e9f",
+              fill: false
+            },{
+                label:"VOC_3",
+              data: data3,
+              borderColor: "#ff7f00",
+              fill: false
+            },{
+                label:"VOC_4",
+              data: data4,
+              borderColor: "#ffff33",
+              fill: false
+            },{
+                label:"VOC_5",
+              data: data5,
+              borderColor: "#a75629",
+              fill: false
+            },{
+                label:"VOC_6",
+              data: data6,
+              borderColor: "#f781be",
+              fill: false
+            },{
+                label:"VOC_7",
+              data: data7,
+              borderColor: "#999999",
+              fill: false
+            },{
+                label:"VOC_8",
+              data: data8,
+              borderColor: "#e3191b",
+              fill: false
+            },{
+                label:"VOC_9",
+              data: data9,
+              borderColor: "#397ab5",
+              fill: false
+            }]
+          },
+          options: {
+                    scales: {
+                    yAxes: [{
+                    scaleLabel: {
+                        display: true,
+                        labelString: 'concentration in ppm'
+                    }
+                    }],
+                    xAxes: [{
+                    scaleLabel: {
+                        display: true,
+                        labelString: 'Date of report'
+                    }
+                    }]
+                } 
+          }
+        });
+        </script>
+        <script>
+            var reports = document.getElementById("my_reports").innerHTML;
+        
+            reports = JSON.parse(reports);
+            console.log("In line charts",reports);
+            let x1 = []
+            for(let i = 0;i<reports.length;i++){
+                if(reports[i]["Prediction"]==0){
+                    x1.push(1)
+                }
+                else{
+                    x1.push(-1)
+                }
+            }
+            
+            const ctx = document.getElementById('myChart1').getContext('2d');
+            const myChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: t,
+                    datasets: [{
+                        label: 'Healthy or unhealty vs report',
+                        data: x1,
+                        fill: false,
+                        borderColor: 'rgb(75, 192, 192)',
+                        tension: 0.1
+                    }]
+                },
+                options : {
+                    scales: {
+                    yAxes: [{
+                    scaleLabel: {
+                        display: true,
+                        labelString: 'Healthy(1) or Unhealthy(-1)'
+                    },
+                    ticks: {
+            
+                        stepSize: 1
+                    }
+                    }],
+                    xAxes: [{
+                    scaleLabel: {
+                        display: true,
+                        labelString: 'Date of report'
+                    }
+                    }]
+                } 
+                }
+            });
+            </script>
+            <script>
+                 console.log("in bar",reports);
+                 // preparing data
+                 let datav1 = []
+                 let datav2 = []
+                 let datav3 = []
+                 let datav4 = []
+                 let datav5 = []
+                 let datav6 = []
+                 let datav7 = []
+                 let datav8 = []
+                 let datav9 = []
+                 let color1 = []
+                 let backcolor1 = []
+                 for(let i=0;i<reports.length;i++){
+                     datav1.push(reports[i]["voc1"]);
+                     datav2.push(reports[i]["voc2"]);
+                     datav3.push(reports[i]["voc3"]);
+                     datav4.push(reports[i]["voc4"]);
+                     datav5.push(reports[i]["voc5"]);
+                     datav6.push(reports[i]["voc6"]);
+                     datav7.push(reports[i]["voc7"]);
+                     datav8.push(reports[i]["voc8"]);
+                     datav9.push(reports[i]["voc9"]);
+                     
+                     if(reports[i]["Prediction"]==0){
+                        backcolor1.push("greenyellow");
+                        color1.push("darkgreen");
+                     }
+                     else{
+                        backcolor1.push("orange");
+                        color1.push("red");
+                     }
+                 } 
+        
+                 // preparing data
+                const ctx1 = document.getElementById('myChart00').getContext('2d');
+                const ctx2 = document.getElementById('myChart11').getContext('2d');
+                const ctx3 = document.getElementById('myChart22').getContext('2d');
+                const ctx4 = document.getElementById('myChart33').getContext('2d');
+                const ctx5 = document.getElementById('myChart44').getContext('2d');
+                const ctx6 = document.getElementById('myChart55').getContext('2d');
+                const ctx7 = document.getElementById('myChart66').getContext('2d');
+                const ctx8 = document.getElementById('myChart77').getContext('2d');
+                const ctx9 = document.getElementById('myChart88').getContext('2d');
+                    const data0 = {
+                    labels: t,
+                    datasets: [{
+                        label: 'VOC 1',
+                        data: datav1,
+                        backgroundColor: backcolor1,
+                        borderColor: color1,
+                        borderWidth: 1
+                    }]
+                    };
+                    const data11 = {
+                    labels: t,
+                    datasets: [{
+                        label: 'VOC 2',
+                        data: datav2,
+                        backgroundColor: backcolor1,
+                        borderColor: color1,
+                        borderWidth: 1
+                    }]
+                    };const data22 = {
+                    labels: t,
+                    datasets: [{
+                        label: 'VOC 3',
+                        data: datav3,
+                        backgroundColor: backcolor1,
+                        borderColor: color1,
+                        borderWidth: 1
+                    }]
+                    };const data33 = {
+                    labels: t,
+                    datasets: [{
+                        label: 'VOC 4',
+                        data: datav4,
+                        backgroundColor: backcolor1,
+                        borderColor: color1,
+                        borderWidth: 1
+                    }]
+                    };const data44 = {
+                    labels: t,
+                    datasets: [{
+                        label: 'VOC 5',
+                        data: datav5,
+                        backgroundColor: backcolor1,
+                        borderColor: color1,
+                        borderWidth: 1
+                    }]
+                    };const data55 = {
+                    labels: t,
+                    datasets: [{
+                        label: 'VOC 6',
+                        data: datav6,
+                        backgroundColor: backcolor1,
+                        borderColor: color1,
+                        borderWidth: 1
+                    }]
+                    };const data66 = {
+                    labels: t,
+                    datasets: [{
+                        label: 'VOC 7',
+                        data: datav7,
+                        backgroundColor: backcolor1,
+                        borderColor: color1,
+                        borderWidth: 1
+                    }]
+                    };const data77 = {
+                    labels: t,
+                    datasets: [{
+                        label: 'VOC 8',
+                        data: datav8,
+                        backgroundColor: backcolor1,
+                        borderColor: color1,
+                        borderWidth: 1
+                    }]
+                    };const data88 = {
+                    labels: t,
+                    datasets: [{
+                        label: 'VOC 9',
+                        data: datav9,
+                        backgroundColor: backcolor1,
+                        borderColor: color1,
+                        borderWidth: 1
+                    }]
+                    };
+                            const myChart1 = new Chart(ctx1, {
+                            type: 'bar',
+                            data: data0,
+                            options: {
+                                scales: {
+                                        yAxes: [{
+                                        scaleLabel: {
+                                            display: true,
+                                            labelString: 'concentration in ppm'
+                                        }
+                                        }],
+                                        xAxes: [{
+                                        scaleLabel: {
+                                            display: true,
+                                            labelString: 'Date of report'
+                                        }
+                                        }]
+                                    } 
+                            },
+                            });
+                            const myChart2 = new Chart(ctx2, {
+                            type: 'bar',
+                            data: data11,
+                            options: {
+                                scales: {
+                                    scales: {
+                    yAxes: [{
+                    scaleLabel: {
+                        display: true,
+                        labelString: 'concentration in ppm'
+                    }
+                    }],
+                    xAxes: [{
+                    scaleLabel: {
+                        display: true,
+                        labelString: 'Date of report'
+                    }
+                    }]
+                } 
+                                }
+                            },
+                            });
+                            const myChart3 = new Chart(ctx3, {
+                            type: 'bar',
+                            data: data22,
+                            options: {
+                                scales: {
+                                    scales: {
+                    yAxes: [{
+                    scaleLabel: {
+                        display: true,
+                        labelString: 'concentration in ppm'
+                    }
+                    }],
+                    xAxes: [{
+                    scaleLabel: {
+                        display: true,
+                        labelString: 'Date of report'
+                    }
+                    }]
+                } 
+                                }
+                            },
+                            });
+                            const myChart4 = new Chart(ctx4, {
+                            type: 'bar',
+                            data: data33,
+                            options: {
+                                scales: {
+                                    scales: {
+                    yAxes: [{
+                    scaleLabel: {
+                        display: true,
+                        labelString: 'concentration in ppm'
+                    }
+                    }],
+                    xAxes: [{
+                    scaleLabel: {
+                        display: true,
+                        labelString: 'Date of report'
+                    }
+                    }]
+                } 
+                                }
+                            },
+                            });
+                            const myChart5 = new Chart(ctx5, {
+                            type: 'bar',
+                            data: data44,
+                            options: {
+                                scales: {
+                                    scales: {
+                    yAxes: [{
+                    scaleLabel: {
+                        display: true,
+                        labelString: 'concentration in ppm'
+                    }
+                    }],
+                    xAxes: [{
+                    scaleLabel: {
+                        display: true,
+                        labelString: 'Date of report'
+                    }
+                    }]
+                } 
+                                }
+                            },
+                            });
+                            const myChart6 = new Chart(ctx6, {
+                            type: 'bar',
+                            data: data55,
+                            options: {
+                                scales: {
+                                    scales: {
+                    yAxes: [{
+                    scaleLabel: {
+                        display: true,
+                        labelString: 'concentration in ppm'
+                    }
+                    }],
+                    xAxes: [{
+                    scaleLabel: {
+                        display: true,
+                        labelString: 'Date of report'
+                    }
+                    }]
+                } 
+                                }
+                            },
+                            });
+                            const myChart7 = new Chart(ctx7, {
+                            type: 'bar',
+                            data: data66,
+                            options: {
+                                scales: {
+                                    scales: {
+                    yAxes: [{
+                    scaleLabel: {
+                        display: true,
+                        labelString: 'concentration in ppm'
+                    }
+                    }],
+                    xAxes: [{
+                    scaleLabel: {
+                        display: true,
+                        labelString: 'Date of report'
+                    }
+                    }]
+                } 
+                                }
+                            },
+                            });
+                            const myChart8 = new Chart(ctx8, {
+                            type: 'bar',
+                            data: data77,
+                            options: {
+                                scales: {
+                                    scales: {
+                    yAxes: [{
+                    scaleLabel: {
+                        display: true,
+                        labelString: 'concentration in ppm'
+                    }
+                    }],
+                    xAxes: [{
+                    scaleLabel: {
+                        display: true,
+                        labelString: 'Date of report'
+                    }
+                    }]
+                } 
+                                }
+                            },
+                            });
+                            const myChart9 = new Chart(ctx9, {
+                            type: 'bar',
+                            data: data88,
+                            options: {
+                                scales: {
+                                    scales: {
+                    yAxes: [{
+                    scaleLabel: {
+                        display: true,
+                        labelString: 'concentration in ppm'
+                    }
+                    }],
+                    xAxes: [{
+                    scaleLabel: {
+                        display: true,
+                        labelString: 'Date of report'
+                    }
+                    }]
+                } 
+                                }
+                            },
+                            });
+                </script>
+                
+                <script>
+                    var y0 = [];
+                    var y1 = [];
+            
+                    var y2 = [];
+                    var y3 = [];
+            
+                    var y4 = [];
+                    var y5 = [];
+            
+                    var y6 = [];
+                    var y7 = [];
+                    var y8 = [];
+            
+                    for (var i = 0; i < 50; i ++) {
+                        y0[i] = Math.random();
+                        y1[i] = Math.random() + 1;
+            
+                        y2[i] = Math.random();
+                        y3[i] = Math.random() + 1;
+            
+                        y4[i] = Math.random();
+                        y5[i] = Math.random() + 1;
+            
+                        y6[i] = Math.random();
+                        y7[i] = Math.random() + 1;
+            
+                        y8[i] = Math.random() + 1;
+            
+                    }
+            
+                    var VOC_1 = {
+                    y: datav1,
+                    type: 'box',
+                    name : "VOC_1"
+                    };
+            
+                    var VOC_2 = {
+                    y: datav2,
+                    type: 'box',
+                    name : "VOC_2"
+                    };
+            
+                    var VOC_3 = {
+                    y: datav3,
+                    type: 'box',
+                    name : "VOC_3"
+                    };
+            
+                    var VOC_4 = {
+                    y: datav4,
+                    type: 'box',
+                    name : "VOC_4"
+                    };
+            
+                    var VOC_5 = {
+                    y: datav5,
+                    type: 'box',
+                    name : "VOC_5"
+                    };
+            
+                    var VOC_6 = {
+                    y: datav6,
+                    type: 'box',
+                    name : "VOC_6"
+                    };
+            
+                    var VOC_7 = {
+                    y: datav7,
+                    type: 'box',
+                    name : "VOC_7"
+                    };
+            
+                    var VOC_8 = {
+                    y: datav8,
+                    type: 'box',
+                    name : "VOC_8"
+                    };
+            
+                    var VOC_9 = {
+                    y: datav9,
+                    type: 'box',
+                    name : "VOC_9"
+                    };
+            
+                    var data = [VOC_1, VOC_2,VOC_3,VOC_4,VOC_5,VOC_6,VOC_7,VOC_8,VOC_9];
+        
+                    var layout = {
+                        font: {
+                            family: "'Montserrat', sans-serif",
+                            size: "1rem",
+                        },
+                        
+                        legend: {
+                               
+                                font: {
+                                family: "'Montserrat', sans-serif",
+                                size: "0.3rem",
+                                },
+                               
+                            }
+                        ,
+                        xaxis: {
+                                title: {
+                                text: 'Each Volatile Organic Compund',
+                                font: {
+                                    family: 'Courier New, monospace',
+                                    size: 18,
+                                    color: 'black'
+                                }
+                                },
+                            },
+                            yaxis: {
+                                title: {
+                                text: 'Concentration in ppm',
+                                font: {
+                                    family: 'Courier New, monospace',
+        
+                                    size: 18,
+                                    color: 'black'
+                                }
+                                }
+                            }
+                        };
+            
+                    Plotly.newPlot('myDiv', data,layout);
+                </script>
+                
+            <script src="../js/index.js"></script>
 </body>
 </html>
