@@ -295,8 +295,8 @@ app.post('/user/new_upload',upload.single('avatar'),async function(req,res1,next
   })
 })
 
-
- app.listen(3000,function(){
+const PORT = process.env.PORT ||3000;
+ app.listen(PORT,function(){
      console.log("Server is up and running...");
  })
 
