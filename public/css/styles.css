@@ -7,6 +7,12 @@ body{
     margin: 0 1% 2% 1%;
     text-align: center;
 }
+.title-new{
+    background-color: #2A0944;
+    color: #fff;
+    padding: 2%;
+    margin: 0 10% 2% 10%;
+}
 .card{
     border: 4px solid black;
     width: 28%;
